@@ -19,12 +19,12 @@ namespace Lelantus.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] string msg)
+        public string Post([FromBody] Media msg)
         {
             string retMessage = string.Empty;
             try
             {
-                _hubContext.Clients.All.BroadcastMessage("Unknown", msg);
+                _hubContext.Clients.All.BroadcastMessage("Unknown", JsonConvert.SerializeObject(msg));
                 retMessage = "Success";
             }
             catch (Exception e)
