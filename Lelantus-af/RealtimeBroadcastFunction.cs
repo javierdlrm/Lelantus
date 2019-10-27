@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -19,7 +21,11 @@ namespace Lelantus_af
             var media = MediaEntityUtils.GetMediaEntity(name);
 
             var httpClient = new HttpClient();
-            var result = httpClient.PostAsync(new Uri("https://lelantus.azurewebsites.net/api/MediaHub"), new StringContent(JsonConvert.SerializeObject(media))).Result;
+            var myContent = JsonConvert.SerializeObject(media);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = httpClient.PostAsync(new Uri("https://lelantus.azurewebsites.net/api/MediaHub"), byteContent).Result;
         }
     }
 }
