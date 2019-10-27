@@ -54,34 +54,42 @@ export class SecurityForceComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.devices = await this.deviceService.getAll().toPromise();
-    this.media = await this.mediaService.getAll().toPromise();
-    this.loadingIndicator = false;
+    await this.loadData();
 
-    this.hubConnection = new HubConnectionBuilder().withUrl('https://lelantus.azurewebsites.net/mediahub').build();
-    this.hubConnection
-      .start()
-      .then(() => console.log('Connection started!'))
-      .catch(err => console.log('Error while establishing connection :('));
+    if (!this.hubConnection) {
+      this.hubConnection = new HubConnectionBuilder().withUrl('https://lelantus.azurewebsites.net/mediahub').build();
+      this.hubConnection
+        .start()
+        .then(() => console.log('Connection started!'))
+        .catch(err => console.log('Error while establishing connection :('));
 
-    this.hubConnection.on('BroadcastMessage', (type: string, payload: string) => {
-      console.log("Receiving broadcast!!!");
-      console.log(payload);
-    });
+      this.hubConnection.on('BroadcastMessage', (type: string, payload: string) => {
+        console.log("Receiving broadcast");
+        console.log(payload);
+        this.loadData();
+      });
+    }
 
     return Promise.resolve();
   }
 
-async onSelect({ selected }): Promise < void> {
-  this.loadingIndicator = true;
-  this.selectedDevice = selected[0];
-  this.media = await this.mediaService.getAllByDevice(this.selectedDevice.deviceId).toPromise();
-  this.loadingIndicator = false;
-  return Promise.resolve();
-}
+  private async loadData(): Promise<void> {
+    this.loadingIndicator = true;
+    this.devices = await this.deviceService.getAll().toPromise();
+    this.media = await this.mediaService.getAll().toPromise();
+    this.loadingIndicator = false;
+  }
 
-toggle() {
-  this.collapsed = !this.collapsed;
-}
+  async onSelect({ selected }): Promise<void> {
+    this.loadingIndicator = true;
+    this.selectedDevice = selected[0];
+    this.media = await this.mediaService.getAllByDevice(this.selectedDevice.deviceId).toPromise();
+    this.loadingIndicator = false;
+    return Promise.resolve();
+  }
+
+  toggle() {
+    this.collapsed = !this.collapsed;
+  }
 
 }
