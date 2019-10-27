@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -18,9 +19,10 @@ namespace Lelantus_af
             [BlobTrigger("lelantus-sa-container/{name}", Connection = "StorageConnectionString")]Stream myBlob,
             string name, ILogger log)
         {
-            //var media = MediaEntityUtils.GetMediaEntity(name);
+            var media = MediaEntityUtils.GetMediaEntity(name);
 
-            //await BroadcastMedia(signalRMessages, media);
+            var httpClient = new HttpClient();
+            var result = await httpClient.PostAsync(new Uri("https://https://lelantus.azurewebsites.net/api/MediaHub"), new StringContent(JsonConvert.SerializeObject(media)));
             return new OkResult();
         }
 
