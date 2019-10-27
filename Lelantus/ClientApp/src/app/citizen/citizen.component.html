@@ -1,0 +1,59 @@
+<div class="row content-wrapper">
+  <div class="col-md-2 sidebar">
+    <div class="menu-wrapper">
+      <div class="menu-button-wrapper text-right">
+        <button class="btn btn-default menu-button" (click)="toggle()">
+          <fa-icon icon="bars"></fa-icon>
+        </button>
+      </div>
+      <div class="menu-content-wrapper" [ngClass]="{collapse: collapsed}">
+        <h4 class="menu-title">Menu</h4>
+        <ul class="menu-list">
+          <li><a [routerLink]="['/']">Dashboard</a></li>
+          <li><a>Profile</a></li>
+          <li><a>Settings</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10 content">
+    <div class="row">
+      <div class="col-md-12 card-wrapper" style="width: 100%">
+        <div class="card-content">
+          <div class="row">
+            <div class="col-8">
+              <h5 class="card-title">Archive</h5>
+              <p class="d-inline-block">Device id: <span class="device-id">{{deviceId}}</span></p>
+            </div>
+            <div class="col-4 text-right">
+              <button class="btn btn-default archive-button">Save</button>
+            </div>
+          </div>
+          <ngx-datatable class="material" [rows]="media" [loadingIndicator]="loadingIndicator"
+            [columns]="archive_columns" [columnMode]="'flex'" [headerHeight]="36" [footerHeight]="36" [rowHeight]="50"
+            [rowHeight]="'auto'" [reorderable]="reorderable" [limit]="15" [selected]="selectedMedia" [sorts]="[{prop: 'date', dir: 'desc'}]">
+
+            <!-- Column Templates -->
+            <ngx-datatable-column name="Type" [flexGrow]="1">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <fa-icon class="fa-lg" icon="{{value | lowercase}}"></fa-icon>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Name" [flexGrow]="2"></ngx-datatable-column>
+            <ngx-datatable-column name="Date" [flexGrow]="3">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <p>{{ value | date:'medium'}}</p>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="View" [flexGrow]="1">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <a class="download-link" href="{{row.url}}">Download</a>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="Visible" [headerCheckboxable]="true" [checkboxable]="true" [flexGrow]="2"></ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

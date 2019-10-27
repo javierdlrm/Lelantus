@@ -1,0 +1,83 @@
+.content {
+  margin-top: 40px;
+  background: #f8f8f8;
+  -webkit-box-shadow: inset 0px 0px 8px 7px rgba(32,32,32,1) !important;
+  -moz-box-shadow: inset 0px 0px 8px 7px rgba(32,32,32,1) !important;
+  box-shadow: inset 0px 0px 8px 7px rgba(32,32,32,1) !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-family: 'Poiret One', cursive;
+  font-size: 90px;
+  color: black;
+  margin: 6vh 0;
+  display: none;
+}
+
+.slogan {
+  font-family: 'Raleway', cursive;
+  font-size: 40px;
+  color: rgb(101, 44, 254);
+}
+
+.description {
+  font-size: 18px;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 42px;
+}
+
+.intro-group {
+  margin: 10vh 0;
+}
+
+.buttons-group {
+  margin-top: 2vh;
+  margin-bottom: 7vh;
+}
+
+.securityforce-button {
+  background: #202020;
+  color: white;
+  padding: 24px;
+  font-size: 1.2rem;
+  width: 100%;
+  margin: 2px 0;
+}
+
+.citizen-button {
+  background: #e3e3e3;
+  color: rgb(101, 44, 254);
+  font-size: 1.2rem;
+  padding: 24px;
+  width: 100%;
+  margin: 2px 0;
+}
+
+img {
+  width: 25%;
+  margin-bottom: 40px;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  .content {
+    margin-top: 0;
+  }
+
+  .intro-group {
+    margin-top: 2px;
+  }
+
+  .buttons-group {
+    margin-bottom: 8vh;
+  }
+
+  img {
+    width: 200px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+  }
+}

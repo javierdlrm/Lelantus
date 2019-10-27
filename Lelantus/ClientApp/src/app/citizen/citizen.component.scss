@@ -1,0 +1,123 @@
+.content-wrapper {
+  height: 100vh;
+  width: 100%;
+
+  .sidebar {
+    text-align: center;
+
+    .menu-title {
+      color: whitesmoke;
+      font-family: 'Poiret One', cursive;
+      margin: 68% 0;
+      font-size: 40px;
+    }
+
+    .menu-list{
+      color: white;
+      list-style: none;
+      text-align: center;
+      padding: 0;
+      font-family: 'Raleway', cursive;
+
+      li a {
+        margin-top: 50px;
+        display: block;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+
+  .content {
+    background: whitesmoke;
+
+    .card-wrapper {
+      padding: 12px;
+
+      .card-content {
+        background: white;
+        padding: 20px;
+        height: 100%;
+
+        .card-title {
+          display: inline-block;
+          margin-right: 48px;
+          font-family: 'Raleway', cursive;
+          font-weight: bolder;
+          text-decoration: underline;
+          margin-bottom: 20px;
+        }
+
+        iframe {
+          height: 370px;
+        }
+
+        .vertical-center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        span[title="Details"] {
+          color: rgb(101, 44, 254) !important;
+        }
+
+        fa-icon {
+            color: rgb(101, 44, 254);
+        }
+
+        .archive-button {
+          color: white;
+          background: #652cfe;
+          padding: 10px 20px;
+          font-size: 1rem;
+          margin-top: -8px;
+          margin-bottom: 8px;
+        }
+      }
+    }
+  }
+
+}
+
+.menu-button {
+  display:none;
+}
+
+.menu-button-wrapper {
+  margin: 6px;
+  width: 100%;
+}
+
+.download-link {
+  cursor: pointer;
+  color: #652cfe !important;
+}
+
+.device-id {
+  color: gray;
+  margin-left: 12px;
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+
+  .menu-title {
+    margin: 5% 0 !important;
+  }
+
+  .menu-list{
+    li a {
+      margin-top: 15px !important;
+    }
+  }
+
+  .menu-button{
+    display: inline;
+  }
+}
