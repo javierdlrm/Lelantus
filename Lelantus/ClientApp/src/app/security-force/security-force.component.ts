@@ -58,7 +58,7 @@ export class SecurityForceComponent implements OnInit {
     this.media = await this.mediaService.getAll().toPromise();
     this.loadingIndicator = false;
 
-    this.hubConnection = new HubConnectionBuilder().withUrl('https://localhost:44366/mediahub').build();
+    this.hubConnection = new HubConnectionBuilder().withUrl('https://lelantus.azurewebsites.net/mediahub').build();
     this.hubConnection
       .start()
       .then(() => console.log('Connection started!'))
@@ -66,6 +66,7 @@ export class SecurityForceComponent implements OnInit {
 
     this.hubConnection.on('BroadcastMessage', (type: string, payload: string) => {
       console.log("Receiving broadcast!!!");
+      console.log(payload);
     });
 
     return Promise.resolve();

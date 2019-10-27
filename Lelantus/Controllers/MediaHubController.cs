@@ -7,7 +7,6 @@ using System;
 
 namespace Lelantus.Controllers
 {
-    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class MediaHubController : ControllerBase
@@ -20,12 +19,12 @@ namespace Lelantus.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody]Media msg)
+        public string Post([FromBody] string msg)
         {
             string retMessage = string.Empty;
             try
             {
-                _hubContext.Clients.All.BroadcastMessage(msg.Type, JsonConvert.SerializeObject(msg));
+                _hubContext.Clients.All.BroadcastMessage("Unknown", msg);
                 retMessage = "Success";
             }
             catch (Exception e)
